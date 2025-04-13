@@ -5,7 +5,7 @@ import {
   PrismaClientValidationError,
 } from "@prisma/client/runtime/library";
 
-const globalErrorHandler = (
+export const globalErrorHandler = (
   err: any,
   req: Request,
   res: Response,
