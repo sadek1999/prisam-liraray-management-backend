@@ -31,25 +31,25 @@ model Book {
 }
 
 model Member {
-  id             String   @id @default(uuid())
+  id             String         @id @default(uuid())
   name           String
-  email          String   @unique
+  email          String         @unique
   phone          String
-  membershipData DateTime
-
-  BorrowRecord BorrowRecord[]
+  membershipDate DateTime
+  BorrowRecord   BorrowRecord[]
 
   @@map("members")
 }
 
 model BorrowRecord {
-  id         String   @id @default(uuid())
+  id         String    @id @default(uuid())
   borrowDate DateTime
-  returnData DateTime
+  returnDate DateTime?
   bookId     String
   memberId   String
-  book       Book     @relation(fields: [bookId], references: [id])
-  member     Member   @relation(fields: [memberId], references: [id])
 
-  @@map("borrowRecords")
+  book   Book   @relation(fields: [bookId], references: [id])
+  member Member @relation(fields: [memberId], references: [id])
+
+  @@map("borrowRecord")
 }

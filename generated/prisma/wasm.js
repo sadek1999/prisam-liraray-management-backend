@@ -118,16 +118,18 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 });
 
 exports.Prisma.BookScalarFieldEnum = {
-  bookId: 'bookId',
+  id: 'id',
   title: 'title',
   genre: 'genre',
   publishedYear: 'publishedYear',
   totalCopies: 'totalCopies',
-  availableCopies: 'availableCopies'
+  availableCopies: 'availableCopies',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.MemberScalarFieldEnum = {
-  memberId: 'memberId',
+  id: 'id',
   name: 'name',
   email: 'email',
   phone: 'phone',
@@ -135,7 +137,7 @@ exports.Prisma.MemberScalarFieldEnum = {
 };
 
 exports.Prisma.BorrowRecordScalarFieldEnum = {
-  borrowId: 'borrowId',
+  id: 'id',
   borrowDate: 'borrowDate',
   returnDate: 'returnDate',
   bookId: 'bookId',

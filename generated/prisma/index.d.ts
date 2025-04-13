@@ -1137,30 +1137,36 @@ export namespace Prisma {
   }
 
   export type BookMinAggregateOutputType = {
-    bookId: string | null
+    id: string | null
     title: string | null
     genre: string | null
     publishedYear: number | null
     totalCopies: number | null
     availableCopies: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type BookMaxAggregateOutputType = {
-    bookId: string | null
+    id: string | null
     title: string | null
     genre: string | null
     publishedYear: number | null
     totalCopies: number | null
     availableCopies: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type BookCountAggregateOutputType = {
-    bookId: number
+    id: number
     title: number
     genre: number
     publishedYear: number
     totalCopies: number
     availableCopies: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -1178,30 +1184,36 @@ export namespace Prisma {
   }
 
   export type BookMinAggregateInputType = {
-    bookId?: true
+    id?: true
     title?: true
     genre?: true
     publishedYear?: true
     totalCopies?: true
     availableCopies?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type BookMaxAggregateInputType = {
-    bookId?: true
+    id?: true
     title?: true
     genre?: true
     publishedYear?: true
     totalCopies?: true
     availableCopies?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type BookCountAggregateInputType = {
-    bookId?: true
+    id?: true
     title?: true
     genre?: true
     publishedYear?: true
     totalCopies?: true
     availableCopies?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -1292,12 +1304,14 @@ export namespace Prisma {
   }
 
   export type BookGroupByOutputType = {
-    bookId: string
+    id: string
     title: string
     genre: string
     publishedYear: number
     totalCopies: number
     availableCopies: number
+    createdAt: Date
+    updatedAt: Date
     _count: BookCountAggregateOutputType | null
     _avg: BookAvgAggregateOutputType | null
     _sum: BookSumAggregateOutputType | null
@@ -1320,44 +1334,52 @@ export namespace Prisma {
 
 
   export type BookSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    bookId?: boolean
+    id?: boolean
     title?: boolean
     genre?: boolean
     publishedYear?: boolean
     totalCopies?: boolean
     availableCopies?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     BorrowRecord?: boolean | Book$BorrowRecordArgs<ExtArgs>
     _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["book"]>
 
   export type BookSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    bookId?: boolean
+    id?: boolean
     title?: boolean
     genre?: boolean
     publishedYear?: boolean
     totalCopies?: boolean
     availableCopies?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["book"]>
 
   export type BookSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    bookId?: boolean
+    id?: boolean
     title?: boolean
     genre?: boolean
     publishedYear?: boolean
     totalCopies?: boolean
     availableCopies?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["book"]>
 
   export type BookSelectScalar = {
-    bookId?: boolean
+    id?: boolean
     title?: boolean
     genre?: boolean
     publishedYear?: boolean
     totalCopies?: boolean
     availableCopies?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"bookId" | "title" | "genre" | "publishedYear" | "totalCopies" | "availableCopies", ExtArgs["result"]["book"]>
+  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "genre" | "publishedYear" | "totalCopies" | "availableCopies" | "createdAt" | "updatedAt", ExtArgs["result"]["book"]>
   export type BookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     BorrowRecord?: boolean | Book$BorrowRecordArgs<ExtArgs>
     _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
@@ -1371,12 +1393,14 @@ export namespace Prisma {
       BorrowRecord: Prisma.$BorrowRecordPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      bookId: string
+      id: string
       title: string
       genre: string
       publishedYear: number
       totalCopies: number
       availableCopies: number
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["book"]>
     composites: {}
   }
@@ -1460,8 +1484,8 @@ export namespace Prisma {
      * // Get first 10 Books
      * const books = await prisma.book.findMany({ take: 10 })
      * 
-     * // Only select the `bookId`
-     * const bookWithBookIdOnly = await prisma.book.findMany({ select: { bookId: true } })
+     * // Only select the `id`
+     * const bookWithIdOnly = await prisma.book.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends BookFindManyArgs>(args?: SelectSubset<T, BookFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1505,9 +1529,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Books and only return the `bookId`
-     * const bookWithBookIdOnly = await prisma.book.createManyAndReturn({
-     *   select: { bookId: true },
+     * // Create many Books and only return the `id`
+     * const bookWithIdOnly = await prisma.book.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -1596,9 +1620,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Books and only return the `bookId`
-     * const bookWithBookIdOnly = await prisma.book.updateManyAndReturn({
-     *   select: { bookId: true },
+     * // Update zero or more Books and only return the `id`
+     * const bookWithIdOnly = await prisma.book.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1801,12 +1825,14 @@ export namespace Prisma {
    * Fields of the Book model
    */
   interface BookFieldRefs {
-    readonly bookId: FieldRef<"Book", 'String'>
+    readonly id: FieldRef<"Book", 'String'>
     readonly title: FieldRef<"Book", 'String'>
     readonly genre: FieldRef<"Book", 'String'>
     readonly publishedYear: FieldRef<"Book", 'Int'>
     readonly totalCopies: FieldRef<"Book", 'Int'>
     readonly availableCopies: FieldRef<"Book", 'Int'>
+    readonly createdAt: FieldRef<"Book", 'DateTime'>
+    readonly updatedAt: FieldRef<"Book", 'DateTime'>
   }
     
 
@@ -2248,7 +2274,7 @@ export namespace Prisma {
   }
 
   export type MemberMinAggregateOutputType = {
-    memberId: string | null
+    id: string | null
     name: string | null
     email: string | null
     phone: string | null
@@ -2256,7 +2282,7 @@ export namespace Prisma {
   }
 
   export type MemberMaxAggregateOutputType = {
-    memberId: string | null
+    id: string | null
     name: string | null
     email: string | null
     phone: string | null
@@ -2264,7 +2290,7 @@ export namespace Prisma {
   }
 
   export type MemberCountAggregateOutputType = {
-    memberId: number
+    id: number
     name: number
     email: number
     phone: number
@@ -2274,7 +2300,7 @@ export namespace Prisma {
 
 
   export type MemberMinAggregateInputType = {
-    memberId?: true
+    id?: true
     name?: true
     email?: true
     phone?: true
@@ -2282,7 +2308,7 @@ export namespace Prisma {
   }
 
   export type MemberMaxAggregateInputType = {
-    memberId?: true
+    id?: true
     name?: true
     email?: true
     phone?: true
@@ -2290,7 +2316,7 @@ export namespace Prisma {
   }
 
   export type MemberCountAggregateInputType = {
-    memberId?: true
+    id?: true
     name?: true
     email?: true
     phone?: true
@@ -2371,7 +2397,7 @@ export namespace Prisma {
   }
 
   export type MemberGroupByOutputType = {
-    memberId: string
+    id: string
     name: string
     email: string
     phone: string
@@ -2396,7 +2422,7 @@ export namespace Prisma {
 
 
   export type MemberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    memberId?: boolean
+    id?: boolean
     name?: boolean
     email?: boolean
     phone?: boolean
@@ -2406,7 +2432,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["member"]>
 
   export type MemberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    memberId?: boolean
+    id?: boolean
     name?: boolean
     email?: boolean
     phone?: boolean
@@ -2414,7 +2440,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["member"]>
 
   export type MemberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    memberId?: boolean
+    id?: boolean
     name?: boolean
     email?: boolean
     phone?: boolean
@@ -2422,14 +2448,14 @@ export namespace Prisma {
   }, ExtArgs["result"]["member"]>
 
   export type MemberSelectScalar = {
-    memberId?: boolean
+    id?: boolean
     name?: boolean
     email?: boolean
     phone?: boolean
     membershipDate?: boolean
   }
 
-  export type MemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"memberId" | "name" | "email" | "phone" | "membershipDate", ExtArgs["result"]["member"]>
+  export type MemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "membershipDate", ExtArgs["result"]["member"]>
   export type MemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     BorrowRecord?: boolean | Member$BorrowRecordArgs<ExtArgs>
     _count?: boolean | MemberCountOutputTypeDefaultArgs<ExtArgs>
@@ -2443,7 +2469,7 @@ export namespace Prisma {
       BorrowRecord: Prisma.$BorrowRecordPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      memberId: string
+      id: string
       name: string
       email: string
       phone: string
@@ -2531,8 +2557,8 @@ export namespace Prisma {
      * // Get first 10 Members
      * const members = await prisma.member.findMany({ take: 10 })
      * 
-     * // Only select the `memberId`
-     * const memberWithMemberIdOnly = await prisma.member.findMany({ select: { memberId: true } })
+     * // Only select the `id`
+     * const memberWithIdOnly = await prisma.member.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends MemberFindManyArgs>(args?: SelectSubset<T, MemberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -2576,9 +2602,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Members and only return the `memberId`
-     * const memberWithMemberIdOnly = await prisma.member.createManyAndReturn({
-     *   select: { memberId: true },
+     * // Create many Members and only return the `id`
+     * const memberWithIdOnly = await prisma.member.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -2667,9 +2693,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Members and only return the `memberId`
-     * const memberWithMemberIdOnly = await prisma.member.updateManyAndReturn({
-     *   select: { memberId: true },
+     * // Update zero or more Members and only return the `id`
+     * const memberWithIdOnly = await prisma.member.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2872,7 +2898,7 @@ export namespace Prisma {
    * Fields of the Member model
    */
   interface MemberFieldRefs {
-    readonly memberId: FieldRef<"Member", 'String'>
+    readonly id: FieldRef<"Member", 'String'>
     readonly name: FieldRef<"Member", 'String'>
     readonly email: FieldRef<"Member", 'String'>
     readonly phone: FieldRef<"Member", 'String'>
@@ -3318,7 +3344,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordMinAggregateOutputType = {
-    borrowId: string | null
+    id: string | null
     borrowDate: Date | null
     returnDate: Date | null
     bookId: string | null
@@ -3326,7 +3352,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordMaxAggregateOutputType = {
-    borrowId: string | null
+    id: string | null
     borrowDate: Date | null
     returnDate: Date | null
     bookId: string | null
@@ -3334,7 +3360,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordCountAggregateOutputType = {
-    borrowId: number
+    id: number
     borrowDate: number
     returnDate: number
     bookId: number
@@ -3344,7 +3370,7 @@ export namespace Prisma {
 
 
   export type BorrowRecordMinAggregateInputType = {
-    borrowId?: true
+    id?: true
     borrowDate?: true
     returnDate?: true
     bookId?: true
@@ -3352,7 +3378,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordMaxAggregateInputType = {
-    borrowId?: true
+    id?: true
     borrowDate?: true
     returnDate?: true
     bookId?: true
@@ -3360,7 +3386,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordCountAggregateInputType = {
-    borrowId?: true
+    id?: true
     borrowDate?: true
     returnDate?: true
     bookId?: true
@@ -3441,7 +3467,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordGroupByOutputType = {
-    borrowId: string
+    id: string
     borrowDate: Date
     returnDate: Date | null
     bookId: string
@@ -3466,7 +3492,7 @@ export namespace Prisma {
 
 
   export type BorrowRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    borrowId?: boolean
+    id?: boolean
     borrowDate?: boolean
     returnDate?: boolean
     bookId?: boolean
@@ -3476,7 +3502,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["borrowRecord"]>
 
   export type BorrowRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    borrowId?: boolean
+    id?: boolean
     borrowDate?: boolean
     returnDate?: boolean
     bookId?: boolean
@@ -3486,7 +3512,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["borrowRecord"]>
 
   export type BorrowRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    borrowId?: boolean
+    id?: boolean
     borrowDate?: boolean
     returnDate?: boolean
     bookId?: boolean
@@ -3496,14 +3522,14 @@ export namespace Prisma {
   }, ExtArgs["result"]["borrowRecord"]>
 
   export type BorrowRecordSelectScalar = {
-    borrowId?: boolean
+    id?: boolean
     borrowDate?: boolean
     returnDate?: boolean
     bookId?: boolean
     memberId?: boolean
   }
 
-  export type BorrowRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"borrowId" | "borrowDate" | "returnDate" | "bookId" | "memberId", ExtArgs["result"]["borrowRecord"]>
+  export type BorrowRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "borrowDate" | "returnDate" | "bookId" | "memberId", ExtArgs["result"]["borrowRecord"]>
   export type BorrowRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     book?: boolean | BookDefaultArgs<ExtArgs>
     member?: boolean | MemberDefaultArgs<ExtArgs>
@@ -3524,7 +3550,7 @@ export namespace Prisma {
       member: Prisma.$MemberPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      borrowId: string
+      id: string
       borrowDate: Date
       returnDate: Date | null
       bookId: string
@@ -3612,8 +3638,8 @@ export namespace Prisma {
      * // Get first 10 BorrowRecords
      * const borrowRecords = await prisma.borrowRecord.findMany({ take: 10 })
      * 
-     * // Only select the `borrowId`
-     * const borrowRecordWithBorrowIdOnly = await prisma.borrowRecord.findMany({ select: { borrowId: true } })
+     * // Only select the `id`
+     * const borrowRecordWithIdOnly = await prisma.borrowRecord.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends BorrowRecordFindManyArgs>(args?: SelectSubset<T, BorrowRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BorrowRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -3657,9 +3683,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many BorrowRecords and only return the `borrowId`
-     * const borrowRecordWithBorrowIdOnly = await prisma.borrowRecord.createManyAndReturn({
-     *   select: { borrowId: true },
+     * // Create many BorrowRecords and only return the `id`
+     * const borrowRecordWithIdOnly = await prisma.borrowRecord.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -3748,9 +3774,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more BorrowRecords and only return the `borrowId`
-     * const borrowRecordWithBorrowIdOnly = await prisma.borrowRecord.updateManyAndReturn({
-     *   select: { borrowId: true },
+     * // Update zero or more BorrowRecords and only return the `id`
+     * const borrowRecordWithIdOnly = await prisma.borrowRecord.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3954,7 +3980,7 @@ export namespace Prisma {
    * Fields of the BorrowRecord model
    */
   interface BorrowRecordFieldRefs {
-    readonly borrowId: FieldRef<"BorrowRecord", 'String'>
+    readonly id: FieldRef<"BorrowRecord", 'String'>
     readonly borrowDate: FieldRef<"BorrowRecord", 'DateTime'>
     readonly returnDate: FieldRef<"BorrowRecord", 'DateTime'>
     readonly bookId: FieldRef<"BorrowRecord", 'String'>
@@ -4388,19 +4414,21 @@ export namespace Prisma {
 
 
   export const BookScalarFieldEnum: {
-    bookId: 'bookId',
+    id: 'id',
     title: 'title',
     genre: 'genre',
     publishedYear: 'publishedYear',
     totalCopies: 'totalCopies',
-    availableCopies: 'availableCopies'
+    availableCopies: 'availableCopies',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
 
 
   export const MemberScalarFieldEnum: {
-    memberId: 'memberId',
+    id: 'id',
     name: 'name',
     email: 'email',
     phone: 'phone',
@@ -4411,7 +4439,7 @@ export namespace Prisma {
 
 
   export const BorrowRecordScalarFieldEnum: {
-    borrowId: 'borrowId',
+    id: 'id',
     borrowDate: 'borrowDate',
     returnDate: 'returnDate',
     bookId: 'bookId',
@@ -4513,27 +4541,31 @@ export namespace Prisma {
     AND?: BookWhereInput | BookWhereInput[]
     OR?: BookWhereInput[]
     NOT?: BookWhereInput | BookWhereInput[]
-    bookId?: StringFilter<"Book"> | string
+    id?: StringFilter<"Book"> | string
     title?: StringFilter<"Book"> | string
     genre?: StringFilter<"Book"> | string
     publishedYear?: IntFilter<"Book"> | number
     totalCopies?: IntFilter<"Book"> | number
     availableCopies?: IntFilter<"Book"> | number
+    createdAt?: DateTimeFilter<"Book"> | Date | string
+    updatedAt?: DateTimeFilter<"Book"> | Date | string
     BorrowRecord?: BorrowRecordListRelationFilter
   }
 
   export type BookOrderByWithRelationInput = {
-    bookId?: SortOrder
+    id?: SortOrder
     title?: SortOrder
     genre?: SortOrder
     publishedYear?: SortOrder
     totalCopies?: SortOrder
     availableCopies?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     BorrowRecord?: BorrowRecordOrderByRelationAggregateInput
   }
 
   export type BookWhereUniqueInput = Prisma.AtLeast<{
-    bookId?: string
+    id?: string
     AND?: BookWhereInput | BookWhereInput[]
     OR?: BookWhereInput[]
     NOT?: BookWhereInput | BookWhereInput[]
@@ -4542,16 +4574,20 @@ export namespace Prisma {
     publishedYear?: IntFilter<"Book"> | number
     totalCopies?: IntFilter<"Book"> | number
     availableCopies?: IntFilter<"Book"> | number
+    createdAt?: DateTimeFilter<"Book"> | Date | string
+    updatedAt?: DateTimeFilter<"Book"> | Date | string
     BorrowRecord?: BorrowRecordListRelationFilter
-  }, "bookId">
+  }, "id">
 
   export type BookOrderByWithAggregationInput = {
-    bookId?: SortOrder
+    id?: SortOrder
     title?: SortOrder
     genre?: SortOrder
     publishedYear?: SortOrder
     totalCopies?: SortOrder
     availableCopies?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: BookCountOrderByAggregateInput
     _avg?: BookAvgOrderByAggregateInput
     _max?: BookMaxOrderByAggregateInput
@@ -4563,19 +4599,21 @@ export namespace Prisma {
     AND?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
     OR?: BookScalarWhereWithAggregatesInput[]
     NOT?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
-    bookId?: StringWithAggregatesFilter<"Book"> | string
+    id?: StringWithAggregatesFilter<"Book"> | string
     title?: StringWithAggregatesFilter<"Book"> | string
     genre?: StringWithAggregatesFilter<"Book"> | string
     publishedYear?: IntWithAggregatesFilter<"Book"> | number
     totalCopies?: IntWithAggregatesFilter<"Book"> | number
     availableCopies?: IntWithAggregatesFilter<"Book"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
   }
 
   export type MemberWhereInput = {
     AND?: MemberWhereInput | MemberWhereInput[]
     OR?: MemberWhereInput[]
     NOT?: MemberWhereInput | MemberWhereInput[]
-    memberId?: StringFilter<"Member"> | string
+    id?: StringFilter<"Member"> | string
     name?: StringFilter<"Member"> | string
     email?: StringFilter<"Member"> | string
     phone?: StringFilter<"Member"> | string
@@ -4584,7 +4622,7 @@ export namespace Prisma {
   }
 
   export type MemberOrderByWithRelationInput = {
-    memberId?: SortOrder
+    id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
@@ -4593,7 +4631,7 @@ export namespace Prisma {
   }
 
   export type MemberWhereUniqueInput = Prisma.AtLeast<{
-    memberId?: string
+    id?: string
     email?: string
     AND?: MemberWhereInput | MemberWhereInput[]
     OR?: MemberWhereInput[]
@@ -4602,10 +4640,10 @@ export namespace Prisma {
     phone?: StringFilter<"Member"> | string
     membershipDate?: DateTimeFilter<"Member"> | Date | string
     BorrowRecord?: BorrowRecordListRelationFilter
-  }, "memberId" | "email">
+  }, "id" | "email">
 
   export type MemberOrderByWithAggregationInput = {
-    memberId?: SortOrder
+    id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
@@ -4619,7 +4657,7 @@ export namespace Prisma {
     AND?: MemberScalarWhereWithAggregatesInput | MemberScalarWhereWithAggregatesInput[]
     OR?: MemberScalarWhereWithAggregatesInput[]
     NOT?: MemberScalarWhereWithAggregatesInput | MemberScalarWhereWithAggregatesInput[]
-    memberId?: StringWithAggregatesFilter<"Member"> | string
+    id?: StringWithAggregatesFilter<"Member"> | string
     name?: StringWithAggregatesFilter<"Member"> | string
     email?: StringWithAggregatesFilter<"Member"> | string
     phone?: StringWithAggregatesFilter<"Member"> | string
@@ -4630,7 +4668,7 @@ export namespace Prisma {
     AND?: BorrowRecordWhereInput | BorrowRecordWhereInput[]
     OR?: BorrowRecordWhereInput[]
     NOT?: BorrowRecordWhereInput | BorrowRecordWhereInput[]
-    borrowId?: StringFilter<"BorrowRecord"> | string
+    id?: StringFilter<"BorrowRecord"> | string
     borrowDate?: DateTimeFilter<"BorrowRecord"> | Date | string
     returnDate?: DateTimeNullableFilter<"BorrowRecord"> | Date | string | null
     bookId?: StringFilter<"BorrowRecord"> | string
@@ -4640,7 +4678,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordOrderByWithRelationInput = {
-    borrowId?: SortOrder
+    id?: SortOrder
     borrowDate?: SortOrder
     returnDate?: SortOrderInput | SortOrder
     bookId?: SortOrder
@@ -4650,7 +4688,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordWhereUniqueInput = Prisma.AtLeast<{
-    borrowId?: string
+    id?: string
     AND?: BorrowRecordWhereInput | BorrowRecordWhereInput[]
     OR?: BorrowRecordWhereInput[]
     NOT?: BorrowRecordWhereInput | BorrowRecordWhereInput[]
@@ -4660,10 +4698,10 @@ export namespace Prisma {
     memberId?: StringFilter<"BorrowRecord"> | string
     book?: XOR<BookScalarRelationFilter, BookWhereInput>
     member?: XOR<MemberScalarRelationFilter, MemberWhereInput>
-  }, "borrowId">
+  }, "id">
 
   export type BorrowRecordOrderByWithAggregationInput = {
-    borrowId?: SortOrder
+    id?: SortOrder
     borrowDate?: SortOrder
     returnDate?: SortOrderInput | SortOrder
     bookId?: SortOrder
@@ -4677,7 +4715,7 @@ export namespace Prisma {
     AND?: BorrowRecordScalarWhereWithAggregatesInput | BorrowRecordScalarWhereWithAggregatesInput[]
     OR?: BorrowRecordScalarWhereWithAggregatesInput[]
     NOT?: BorrowRecordScalarWhereWithAggregatesInput | BorrowRecordScalarWhereWithAggregatesInput[]
-    borrowId?: StringWithAggregatesFilter<"BorrowRecord"> | string
+    id?: StringWithAggregatesFilter<"BorrowRecord"> | string
     borrowDate?: DateTimeWithAggregatesFilter<"BorrowRecord"> | Date | string
     returnDate?: DateTimeNullableWithAggregatesFilter<"BorrowRecord"> | Date | string | null
     bookId?: StringWithAggregatesFilter<"BorrowRecord"> | string
@@ -4685,74 +4723,88 @@ export namespace Prisma {
   }
 
   export type BookCreateInput = {
-    bookId?: string
+    id?: string
     title: string
     genre: string
     publishedYear: number
     totalCopies: number
     availableCopies: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     BorrowRecord?: BorrowRecordCreateNestedManyWithoutBookInput
   }
 
   export type BookUncheckedCreateInput = {
-    bookId?: string
+    id?: string
     title: string
     genre: string
     publishedYear: number
     totalCopies: number
     availableCopies: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     BorrowRecord?: BorrowRecordUncheckedCreateNestedManyWithoutBookInput
   }
 
   export type BookUpdateInput = {
-    bookId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     genre?: StringFieldUpdateOperationsInput | string
     publishedYear?: IntFieldUpdateOperationsInput | number
     totalCopies?: IntFieldUpdateOperationsInput | number
     availableCopies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     BorrowRecord?: BorrowRecordUpdateManyWithoutBookNestedInput
   }
 
   export type BookUncheckedUpdateInput = {
-    bookId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     genre?: StringFieldUpdateOperationsInput | string
     publishedYear?: IntFieldUpdateOperationsInput | number
     totalCopies?: IntFieldUpdateOperationsInput | number
     availableCopies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     BorrowRecord?: BorrowRecordUncheckedUpdateManyWithoutBookNestedInput
   }
 
   export type BookCreateManyInput = {
-    bookId?: string
+    id?: string
     title: string
     genre: string
     publishedYear: number
     totalCopies: number
     availableCopies: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type BookUpdateManyMutationInput = {
-    bookId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     genre?: StringFieldUpdateOperationsInput | string
     publishedYear?: IntFieldUpdateOperationsInput | number
     totalCopies?: IntFieldUpdateOperationsInput | number
     availableCopies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookUncheckedUpdateManyInput = {
-    bookId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     genre?: StringFieldUpdateOperationsInput | string
     publishedYear?: IntFieldUpdateOperationsInput | number
     totalCopies?: IntFieldUpdateOperationsInput | number
     availableCopies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MemberCreateInput = {
-    memberId?: string
+    id?: string
     name: string
     email: string
     phone: string
@@ -4761,7 +4813,7 @@ export namespace Prisma {
   }
 
   export type MemberUncheckedCreateInput = {
-    memberId?: string
+    id?: string
     name: string
     email: string
     phone: string
@@ -4770,7 +4822,7 @@ export namespace Prisma {
   }
 
   export type MemberUpdateInput = {
-    memberId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
@@ -4779,7 +4831,7 @@ export namespace Prisma {
   }
 
   export type MemberUncheckedUpdateInput = {
-    memberId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
@@ -4788,7 +4840,7 @@ export namespace Prisma {
   }
 
   export type MemberCreateManyInput = {
-    memberId?: string
+    id?: string
     name: string
     email: string
     phone: string
@@ -4796,7 +4848,7 @@ export namespace Prisma {
   }
 
   export type MemberUpdateManyMutationInput = {
-    memberId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
@@ -4804,7 +4856,7 @@ export namespace Prisma {
   }
 
   export type MemberUncheckedUpdateManyInput = {
-    memberId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
@@ -4812,7 +4864,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordCreateInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     book: BookCreateNestedOneWithoutBorrowRecordInput
@@ -4820,7 +4872,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordUncheckedCreateInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     bookId: string
@@ -4828,7 +4880,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordUpdateInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     book?: BookUpdateOneRequiredWithoutBorrowRecordNestedInput
@@ -4836,7 +4888,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordUncheckedUpdateInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookId?: StringFieldUpdateOperationsInput | string
@@ -4844,7 +4896,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordCreateManyInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     bookId: string
@@ -4852,13 +4904,13 @@ export namespace Prisma {
   }
 
   export type BorrowRecordUpdateManyMutationInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type BorrowRecordUncheckedUpdateManyInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookId?: StringFieldUpdateOperationsInput | string
@@ -4891,6 +4943,17 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type BorrowRecordListRelationFilter = {
     every?: BorrowRecordWhereInput
     some?: BorrowRecordWhereInput
@@ -4902,12 +4965,14 @@ export namespace Prisma {
   }
 
   export type BookCountOrderByAggregateInput = {
-    bookId?: SortOrder
+    id?: SortOrder
     title?: SortOrder
     genre?: SortOrder
     publishedYear?: SortOrder
     totalCopies?: SortOrder
     availableCopies?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type BookAvgOrderByAggregateInput = {
@@ -4917,21 +4982,25 @@ export namespace Prisma {
   }
 
   export type BookMaxOrderByAggregateInput = {
-    bookId?: SortOrder
+    id?: SortOrder
     title?: SortOrder
     genre?: SortOrder
     publishedYear?: SortOrder
     totalCopies?: SortOrder
     availableCopies?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type BookMinOrderByAggregateInput = {
-    bookId?: SortOrder
+    id?: SortOrder
     title?: SortOrder
     genre?: SortOrder
     publishedYear?: SortOrder
     totalCopies?: SortOrder
     availableCopies?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type BookSumOrderByAggregateInput = {
@@ -4974,41 +5043,6 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type MemberCountOrderByAggregateInput = {
-    memberId?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    membershipDate?: SortOrder
-  }
-
-  export type MemberMaxOrderByAggregateInput = {
-    memberId?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    membershipDate?: SortOrder
-  }
-
-  export type MemberMinOrderByAggregateInput = {
-    memberId?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    membershipDate?: SortOrder
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5021,6 +5055,30 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type MemberCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    membershipDate?: SortOrder
+  }
+
+  export type MemberMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    membershipDate?: SortOrder
+  }
+
+  export type MemberMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    membershipDate?: SortOrder
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -5050,7 +5108,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordCountOrderByAggregateInput = {
-    borrowId?: SortOrder
+    id?: SortOrder
     borrowDate?: SortOrder
     returnDate?: SortOrder
     bookId?: SortOrder
@@ -5058,7 +5116,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordMaxOrderByAggregateInput = {
-    borrowId?: SortOrder
+    id?: SortOrder
     borrowDate?: SortOrder
     returnDate?: SortOrder
     bookId?: SortOrder
@@ -5066,7 +5124,7 @@ export namespace Prisma {
   }
 
   export type BorrowRecordMinOrderByAggregateInput = {
-    borrowId?: SortOrder
+    id?: SortOrder
     borrowDate?: SortOrder
     returnDate?: SortOrder
     bookId?: SortOrder
@@ -5113,6 +5171,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type BorrowRecordUpdateManyWithoutBookNestedInput = {
     create?: XOR<BorrowRecordCreateWithoutBookInput, BorrowRecordUncheckedCreateWithoutBookInput> | BorrowRecordCreateWithoutBookInput[] | BorrowRecordUncheckedCreateWithoutBookInput[]
     connectOrCreate?: BorrowRecordCreateOrConnectWithoutBookInput | BorrowRecordCreateOrConnectWithoutBookInput[]
@@ -5153,10 +5215,6 @@ export namespace Prisma {
     connectOrCreate?: BorrowRecordCreateOrConnectWithoutMemberInput | BorrowRecordCreateOrConnectWithoutMemberInput[]
     createMany?: BorrowRecordCreateManyMemberInputEnvelope
     connect?: BorrowRecordWhereUniqueInput | BorrowRecordWhereUniqueInput[]
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type BorrowRecordUpdateManyWithoutMemberNestedInput = {
@@ -5244,6 +5302,17 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5286,17 +5355,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5350,14 +5408,14 @@ export namespace Prisma {
   }
 
   export type BorrowRecordCreateWithoutBookInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     member: MemberCreateNestedOneWithoutBorrowRecordInput
   }
 
   export type BorrowRecordUncheckedCreateWithoutBookInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     memberId: string
@@ -5393,7 +5451,7 @@ export namespace Prisma {
     AND?: BorrowRecordScalarWhereInput | BorrowRecordScalarWhereInput[]
     OR?: BorrowRecordScalarWhereInput[]
     NOT?: BorrowRecordScalarWhereInput | BorrowRecordScalarWhereInput[]
-    borrowId?: StringFilter<"BorrowRecord"> | string
+    id?: StringFilter<"BorrowRecord"> | string
     borrowDate?: DateTimeFilter<"BorrowRecord"> | Date | string
     returnDate?: DateTimeNullableFilter<"BorrowRecord"> | Date | string | null
     bookId?: StringFilter<"BorrowRecord"> | string
@@ -5401,14 +5459,14 @@ export namespace Prisma {
   }
 
   export type BorrowRecordCreateWithoutMemberInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     book: BookCreateNestedOneWithoutBorrowRecordInput
   }
 
   export type BorrowRecordUncheckedCreateWithoutMemberInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     bookId: string
@@ -5441,21 +5499,25 @@ export namespace Prisma {
   }
 
   export type BookCreateWithoutBorrowRecordInput = {
-    bookId?: string
+    id?: string
     title: string
     genre: string
     publishedYear: number
     totalCopies: number
     availableCopies: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type BookUncheckedCreateWithoutBorrowRecordInput = {
-    bookId?: string
+    id?: string
     title: string
     genre: string
     publishedYear: number
     totalCopies: number
     availableCopies: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type BookCreateOrConnectWithoutBorrowRecordInput = {
@@ -5464,7 +5526,7 @@ export namespace Prisma {
   }
 
   export type MemberCreateWithoutBorrowRecordInput = {
-    memberId?: string
+    id?: string
     name: string
     email: string
     phone: string
@@ -5472,7 +5534,7 @@ export namespace Prisma {
   }
 
   export type MemberUncheckedCreateWithoutBorrowRecordInput = {
-    memberId?: string
+    id?: string
     name: string
     email: string
     phone: string
@@ -5496,21 +5558,25 @@ export namespace Prisma {
   }
 
   export type BookUpdateWithoutBorrowRecordInput = {
-    bookId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     genre?: StringFieldUpdateOperationsInput | string
     publishedYear?: IntFieldUpdateOperationsInput | number
     totalCopies?: IntFieldUpdateOperationsInput | number
     availableCopies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookUncheckedUpdateWithoutBorrowRecordInput = {
-    bookId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     genre?: StringFieldUpdateOperationsInput | string
     publishedYear?: IntFieldUpdateOperationsInput | number
     totalCopies?: IntFieldUpdateOperationsInput | number
     availableCopies?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MemberUpsertWithoutBorrowRecordInput = {
@@ -5525,7 +5591,7 @@ export namespace Prisma {
   }
 
   export type MemberUpdateWithoutBorrowRecordInput = {
-    memberId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
@@ -5533,7 +5599,7 @@ export namespace Prisma {
   }
 
   export type MemberUncheckedUpdateWithoutBorrowRecordInput = {
-    memberId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
@@ -5541,56 +5607,56 @@ export namespace Prisma {
   }
 
   export type BorrowRecordCreateManyBookInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     memberId: string
   }
 
   export type BorrowRecordUpdateWithoutBookInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     member?: MemberUpdateOneRequiredWithoutBorrowRecordNestedInput
   }
 
   export type BorrowRecordUncheckedUpdateWithoutBookInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberId?: StringFieldUpdateOperationsInput | string
   }
 
   export type BorrowRecordUncheckedUpdateManyWithoutBookInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     memberId?: StringFieldUpdateOperationsInput | string
   }
 
   export type BorrowRecordCreateManyMemberInput = {
-    borrowId?: string
+    id?: string
     borrowDate: Date | string
     returnDate?: Date | string | null
     bookId: string
   }
 
   export type BorrowRecordUpdateWithoutMemberInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     book?: BookUpdateOneRequiredWithoutBorrowRecordNestedInput
   }
 
   export type BorrowRecordUncheckedUpdateWithoutMemberInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookId?: StringFieldUpdateOperationsInput | string
   }
 
   export type BorrowRecordUncheckedUpdateManyWithoutMemberInput = {
-    borrowId?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
     borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
     returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookId?: StringFieldUpdateOperationsInput | string
