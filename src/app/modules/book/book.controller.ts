@@ -20,6 +20,7 @@ const createBookIntoDB=catchAsync(async(req:Request,res:Response)=>{
 })
 
 const getAllBookFromDB=catchAsync(async(req:Request,res:Response)=>{
+    // console.log('from book controller')
     const result=await bookService.getAllBookFromDB()
     sendResponse(res,{
         statusCode:httpStatus.OK,
@@ -30,7 +31,9 @@ const getAllBookFromDB=catchAsync(async(req:Request,res:Response)=>{
 })
 
 const getBookFromDB=catchAsync(async(req:Request,res:Response,)=>{
-    const result =await bookService.getBookFromDB(req);
+   const{id}=req.params;
+   
+    const result =await bookService.getBookFromDB(id);
 
     sendResponse(res,{
         statusCode:httpStatus.OK,
@@ -41,7 +44,10 @@ const getBookFromDB=catchAsync(async(req:Request,res:Response,)=>{
 })
 
 const updateBook=catchAsync(async(req:Request,res:Response)=>{
-    const result= await bookService.updateBookIntoDB(req)
+   const{id}=req.params;
+   
+    
+    const result= await bookService.updateBookIntoDB(id,req.body)
     sendResponse(res,{
         statusCode:httpStatus.OK,
         success:true,
@@ -51,7 +57,8 @@ const updateBook=catchAsync(async(req:Request,res:Response)=>{
 })
 
 const deleteBook=catchAsync(async(req:Request,res:Response)=>{
-    const result =await bookService.deleteBookFromDB(req.params);
+    const {id}=req.params;
+    const result =await bookService.deleteBookFromDB(id);
     sendResponse(res,{
         statusCode:httpStatus.OK,
         success:true,
