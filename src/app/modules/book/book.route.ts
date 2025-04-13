@@ -1,8 +1,14 @@
 
 import  express  from 'express';
+import { bookController } from './book.controller';
 
 
 
-const route=express.Router()
 
-export const BookRoute=route;
+const router=express.Router()
+
+router.post('/',bookController.createBookIntoDB);
+
+router.get("/all",bookController.getAllBookFromDB)
+
+export const BookRoute=router;
