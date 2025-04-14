@@ -2,15 +2,29 @@ import { Prisma } from "../../../../generated/prisma";
 import prisma from "../../../shared/prisma";
 
 
-const createBorrow = async (payload: Prisma.BorrowRecordCreateInput) => {
+const createBorrow = async (payload:{bookId:string,memberId:string}) => {
+  const {bookId,memberId}=payload;
+
   const result = await prisma.borrowRecord.create({
     data: {
-      ...payload,
+      bookId,
+      memberId,
+      borrowDate:new Date()
     },
   });
 
   return result;
 };
+
+
+const returnBook= async(id:string)=>{
+  const result= await prisma.borrowRecord.deleteMany({
+    where:{
+      bookId:id
+    }
+  })
+  return result;
+}
 
 const getAllBorrow = async () => {
   const result = await prisma.borrowRecord.findMany();
@@ -49,4 +63,5 @@ export const borrowRecordService = {
   getBorrow,
   updateBorrow,
   deleteBorrow,
+  returnBook,
 };

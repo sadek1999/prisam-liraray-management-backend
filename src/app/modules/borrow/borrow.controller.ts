@@ -3,9 +3,12 @@ import catchAsync from "../../../helpers/catchAsync";
 import { borrowRecordService } from "./borrow.service";
 import sendResponse from "../../../helpers/senRespose";
 import httpStatus from "http-status";
+import { bookController } from "../book/book.controller";
+import { bookService } from "../book/book.service";
 
 const createBorrowIntoDB = catchAsync(async (req: Request, res: Response) => {
-  const result = await borrowRecordService.createBorrow(req.body);
+const{bookId}=req.body
+  const result = await borrowRecordService.createBorrow(bookId);
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,
@@ -13,6 +16,18 @@ const createBorrowIntoDB = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const bookReturn=catchAsync(async(req:Request,res:Response)=>{
+  const{id}=req.params;
+  const result=await borrowRecordService.returnBook(id)
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "return the  book ...",
+    data: result,
+  });
+
+})
 
 const getAllBorrow = catchAsync(async (req: Request, res: Response) => {
   const result = await borrowRecordService.getAllBorrow();
@@ -64,4 +79,5 @@ export const borrowREcordController = {
   getBorrow,
   updateBorrow,
   deleteBorrow,
+  bookReturn
 };
